@@ -1,0 +1,78 @@
+﻿@model mvc4_poject.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Post</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.author)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdAuthor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdAuthor)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.intro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.intro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.body)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.body)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.category)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.category)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.images)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.images)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.video)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.video)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

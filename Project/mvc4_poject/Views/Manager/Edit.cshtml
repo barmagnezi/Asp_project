@@ -1,0 +1,102 @@
+﻿@model mvc4_poject.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.author)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.author)
+            @Html.ValidationMessageFor(model => model.author)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdAuthor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdAuthor)
+            @Html.ValidationMessageFor(model => model.IdAuthor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.date)
+            @Html.ValidationMessageFor(model => model.date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.intro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.intro)
+            @Html.ValidationMessageFor(model => model.intro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.body)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.body)
+            @Html.ValidationMessageFor(model => model.body)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.category)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.category)
+            @Html.ValidationMessageFor(model => model.category)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.images)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.images)
+            @Html.ValidationMessageFor(model => model.images)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.video)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.video)
+            @Html.ValidationMessageFor(model => model.video)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

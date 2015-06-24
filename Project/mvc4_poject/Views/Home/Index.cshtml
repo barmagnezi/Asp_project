@@ -1,31 +1,67 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model mvc4_poject.Models.helperBlogController
+
+@{
+    ViewBag.Title = "Index2";
 }
-@section featured {
 
+<<h1>The posts:</h1>
+
+
+@foreach (var item in Model.PostComments)
+{
+    <section style="padding:12px">
+        <article class=" blogpost">
+            <header>
+                <h2>@item.post.title</h2>
+                <p>
+                    <h3>Posted on (@item.post.date) by @item.post.author</h3>
+                    <h3>Number of comments:@(item.numberOfCom)</h3>
+                </p>
+            </header>
+            <div>
+                <p>@item.post.body</p>
+                @if (@item.post.images != null)
+                {
+                    <img src="@item.post.images" />
+                }
+
+                @if (@item.post.video != null)
+                {
+                    <video controls="controls">
+                        <source src=@item.post.video type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                }
+
+            </div>
+        </article>
+    </section>
+    if (item.comments != null){
+            foreach(var comment in item.comments){
+                <section id="comments">
+                    <h3 style="padding-left:25px;padding-top:10px">comments:</h3>
+                    <!--all the comments-->
+
+                    <article style="padding-left:30px">
+                        <header>
+                            @comment.title  by:@comment.author
+                        </header>
+                        <p>@comment.body</p>
+                    </article>
+
+                </section>
+    }
+    }
+    <form action="/Blog/addComment" style="padding-left:25px;padding-top:10px" id=" comments">
+        <h3>Add comment:</h3><br>
+        author: <input type="text" name="author"><br>
+        urlAuthor: <input type="text" name="urlAuthor"><br>
+        title: <input type="text" name="title"><br>
+        body: <input type="text" name="body"><br>
+        postId: <input type="text" name="postId" value="@item.post.id" readonly><br>
+        <input type="submit" value="Submit">
+    </form>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+

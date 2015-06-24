@@ -1,0 +1,90 @@
+﻿@model mvc4_poject.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+}
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field" style="width:300px">
+            <input type="text" class="form-control" placeholder="Title" name="title" id="title">
+        </div>
+
+        <div class="editor-label" >
+            @Html.LabelFor(model => model.author)
+        </div>
+        <div class="editor-field" style="width:300px">
+            <input type="text" class="form-control" placeholder="author" name="author" id="author">
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.category)
+        </div>
+
+        <select class="selectpicker" onchange="javascript:document.getElementById('msg').value=this.value">
+            <option value="Select one option">Select</option>
+            <option value="OH YEA">YES</option>
+            <option value="OH NO">NO</option>
+        </select>
+
+        <input id="msg" name="msg" type=text size=20>
+
+        <div class="editor-field" style="width:300px">
+            <input type="text" class="form-control" placeholder="category" name="category" id="category">
+        </div>
+
+        <div class="editor-label" >
+            @Html.LabelFor(model => model.intro)
+        </div>
+        <div class="editor-field" style="width:70%">
+            <textarea class="form-control" rows="5" name="intro" id="intro"></textarea>
+        </div>
+
+        <div class="editor-label" >
+            @Html.LabelFor(model => model.body)
+        </div>
+        <div class="editor-field" style="width:70%">
+            <textarea class="form-control" rows="15" name="body" id="body"></textarea>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.images)
+        </div>
+        <div class="editor-field">
+            <input type="checkbox" onclick="var input = document.getElementById('images'); if (this.checked) { input.disabled = false; input.focus(); } else { input.disabled = true; input.value = '' }" />
+            <input id="images" name="images" placeholder="images" disabled="disabled" style="width:400px" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.video)
+        </div>
+
+        <div class="editor-field">
+            <input type="checkbox" onclick="var input = document.getElementById('video'); if (this.checked) { input.disabled = false; input.focus(); } else { input.disabled = true; input.value = '' }" />
+            <input id="video" name="video" placeholder="video" disabled="disabled" style="width:400px" />
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

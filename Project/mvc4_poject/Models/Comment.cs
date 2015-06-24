@@ -14,9 +14,9 @@ namespace mvc4_poject.Models
         public string author { get; set; }
         public string body { get; set; }
 
-        public class CommentDBContext : DbContext
-        {
-            public DbSet<Comment> Comments { get; set; }
-        }
+    }
+    public class CommentDBContext : DbContext
+    {
+        public DbSet<Comment> Comments { get; set; }
     }
 }
