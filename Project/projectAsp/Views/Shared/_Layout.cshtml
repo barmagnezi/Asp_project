@@ -5,29 +5,37 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+            <div >
+                <div>
+                    <h1>Senia&Bar News</h1>
                 </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
+               
             </div>
-        </header>
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+        <div>
+            <nav class="navbar navbar-inverse" style="position: absolute;left: 0;width: 100%;">
+                <ul class="nav navbar-nav">
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("About", "About", "Home")</li>
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </nav>
+        </div>
+        
         <div id="body">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
@@ -37,7 +45,8 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; date:@DateTime.Now</p>
+                    <p>&copy; Made by:Bar Magnezi & Senia kalma</p>
                 </div>
             </div>
         </footer>
@@ -46,3 +55,5 @@
         @RenderSection("scripts", required: false)
     </body>
 </html>
+
+

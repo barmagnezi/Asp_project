@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{462AA2CD-6E43-41EF-BD89-7650A6B2DED5}</ProjectGuid>
+    <ProjectGuid>{61053A30-F532-4F1D-B803-6CC86854AA82}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>projectAsp</RootNamespace>
-    <AssemblyName>projectAsp</AssemblyName>
+    <RootNamespace>mvc4_poject</RootNamespace>
+    <AssemblyName>mvc4_poject</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -308,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -329,9 +328,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6400</DevelopmentServerPort>
+          <DevelopmentServerPort>7446</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6400/</IISUrl>
+          <IISUrl>http://localhost:7446/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
