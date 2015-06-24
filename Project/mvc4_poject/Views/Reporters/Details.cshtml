@@ -1,0 +1,64 @@
+﻿@model mvc4_poject.Models.Reporter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Reporter</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tz)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tz)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.bd)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bd)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.img)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.img)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.info)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.info)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
