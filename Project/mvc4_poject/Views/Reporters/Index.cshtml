@@ -4,66 +4,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h1><b>Our reporters:</b></h1>
+@foreach (var item in Model)
+{
+    <div>
+        <div>
+            <img src="@item.img" width="100" height="100" align="middle">
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tz)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.bd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.info)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th></th>
-    </tr>
+        <div>
+            <h2>
+                <u>Name:</u>
+                @Html.DisplayFor(modelItem => item.name)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tz)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.img)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.info)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+                <br /><u>Info:</u>
+                @Html.DisplayFor(modelItem => item.info)
+
+                <br /><u>Birthday:</u>
+                @Html.DisplayFor(modelItem => item.bd)
+
+                <br /><u>Email:</u>
+                @Html.DisplayFor(modelItem => item.email)
+
+                <br /><u>Phone:</u>
+                @Html.DisplayFor(modelItem => item.phone)
+            </h2>
+        </div>
+    </div>
+    <h3>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </h3>
 }
+<h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
 
-</table>
