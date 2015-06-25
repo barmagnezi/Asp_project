@@ -14,8 +14,8 @@
             <header>
                 <h2>@item.post.title</h2>
                 <p>
-                    <h3>Posted on (@item.post.date) by @item.post.author</h3>
-                    <h3>Number of comments:@(item.numberOfCom)</h3>
+                    <h4>Posted on (@item.post.date) by @item.post.author</h4>
+                    <h4>Number of comments:@(item.numberOfCom)</h4>
                 </p>
             </header>
             <div>
@@ -52,15 +52,18 @@
                 </section>
     }
     }
-    <form action="/Blog/addComment" style="padding-left:25px;padding-top:10px" id=" comments">
-        <h3>Add comment:</h3><br>
-        author: <input type="text" name="author"><br>
-        urlAuthor: <input type="text" name="urlAuthor"><br>
-        title: <input type="text" name="title"><br>
-        body: <input type="text" name="body"><br>
-        postId: <input type="text" name="postId" value="@item.post.id" readonly><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div>
+        <form action="/Blog/addComment" style="padding-left:25px;padding-top:10px" id=" comments">
+            <h3>Add comment:</h3><br>
+            author: <input type="text" name="author"><br>
+            urlAuthor: <input type="text" name="urlAuthor"><br>
+            title: <input type="text" name="title"><br>
+            body: <input type="text" name="body"><br>
+            postId: <input type="text" name="postId" value="@item.post.id" readonly><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
 }
 
 

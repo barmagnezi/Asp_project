@@ -32,19 +32,20 @@
             @Html.LabelFor(model => model.category)
         </div>
 
-        <select class="selectpicker" onchange="javascript:document.getElementById('msg').value=this.value">
-            <option value="Select one option">Select</option>
-            <option value="OH YEA">YES</option>
-            <option value="OH NO">NO</option>
-        </select>
-
-        <input id="msg" name="msg" type=text size=20>
-
-        <div class="editor-field" style="width:300px">
-            <input type="text" class="form-control" placeholder="category" name="category" id="category">
+        
+        <div  style="width:300px">
+            <select class="form-control" onchange="javascript: document.getElementById('category').value = this.value" style="width:50%" >
+                <option value="Economy">Economy</option>
+                <option value="Politics">Politics</option>
+                <option value="Sports">Sports</option>
+                <option value="Celebrity">Celebrity</option>
+                <option value="Technology">Technology</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" class="form-control" placeholder="category" name="category" id="category" disabled="disabled" style="width:50%" value="Economy">
         </div>
 
-        <div class="editor-label" >
+        <div  class="editor-label">
             @Html.LabelFor(model => model.intro)
         </div>
         <div class="editor-field" style="width:70%">
