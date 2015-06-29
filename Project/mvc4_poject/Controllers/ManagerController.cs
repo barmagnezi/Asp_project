@@ -64,7 +64,6 @@ namespace mvc4_poject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(post);
         }
 

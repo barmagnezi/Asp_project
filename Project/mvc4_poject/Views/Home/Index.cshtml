@@ -1,70 +1,61 @@
-﻿@model mvc4_poject.Models.helperBlogController
+﻿@model IEnumerable<mvc4_poject.Models.PostIntro>
 
 @{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Index";
 }
 
-<<h1>The posts:</h1>
+<h2>Top 5 posts:</h2>
 
 
-@foreach (var item in Model.PostComments)
-{
-    <section style="padding:12px">
-        <article class=" blogpost">
-            <header>
-                <h2>@item.post.title</h2>
-                <p>
-                    <h4>Posted on (@item.post.date) by @item.post.author</h4>
-                    <h4>Number of comments:@(item.numberOfCom)</h4>
-                </p>
-            </header>
-            <div>
-                <p>@item.post.body</p>
-                @if (@item.post.images != null)
-                {
-                    <img src="@item.post.images" />
-                }
-
-                @if (@item.post.video != null)
-                {
-                    <video controls="controls">
-                        <source src=@item.post.video type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                }
-
-            </div>
-        </article>
-    </section>
-    if (item.comments != null){
-            foreach(var comment in item.comments){
-                <section id="comments">
-                    <h3 style="padding-left:25px;padding-top:10px">comments:</h3>
-                    <!--all the comments-->
-
-                    <article style="padding-left:30px">
-                        <header>
-                            @comment.title  by:@comment.author
-                        </header>
-                        <p>@comment.body</p>
-                    </article>
-
-                </section>
-    }
-    }
-    <div>
-        <form action="/Blog/addComment" style="padding-left:25px;padding-top:10px" id=" comments">
-            <h3>Add comment:</h3><br>
-            author: <input type="text" name="author"><br>
-            urlAuthor: <input type="text" name="urlAuthor"><br>
-            title: <input type="text" name="title"><br>
-            body: <input type="text" name="body"><br>
-            postId: <input type="text" name="postId" value="@item.post.id" readonly><br>
-            <input type="submit" value="Submit">
-        </form>
+@foreach (var item in Model) {
+    <div class="row" style="float: right; width: 50%">
+  <div class="col-sm-6 col-md-4" style="width:100%">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3 id="title" >@item.title</h3>
+         <h4 id="intro-@item.id"></h4>
+      </div>
+      <img src="@item.image">
+      <p ><a href="#" class="btn btn-primary" role="button" >Full Article</a> <span class="intro" data-idpost="@item.id"><a class="btn btn-default" role="button" id="introButton">Intro</a></span></p>
     </div>
-    
+  </div>
+</div>
 }
 
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".intro").mousedown(function () {
+                var Id1 = $(this).attr("data-idpost");
+                $.ajax({
+                    url: '@Url.Action("GetIntro", "Home")',
+                    type: 'GET',
+                    dataType: 'json',
+
+                    cache: false,
+                    data: { Postid: Id1 },
+                    success: function (data) {
+                        var x = data;
+                        document.getElementById("intro-" + Id1).innerHTML = data.intro;                       
+                    }
+                });
+
+            })
+        });
+    </script>
+
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+                $(".intro").mousedown(function () {
+                    //alert();
+                })
+            });
+    </script>
+
+
+}
 
 

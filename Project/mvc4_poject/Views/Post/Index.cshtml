@@ -1,0 +1,74 @@
+﻿@model mvc4_poject.Models.helperBlogController
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<<h1>The posts:</h1>
+
+
+@foreach (var item in Model.PostComments)
+{
+    <section style="padding:12px">
+        <article class=" blogpost">
+            <header>
+                <h2>@item.post.title</h2>
+                <p>
+                    <h4>Posted on (@item.post.date) by @item.post.author</h4>
+                    <h4>Number of comments:@(item.numberOfCom)</h4>
+                </p>
+            </header>
+            <div>
+                <p>@item.post.body</p>
+                @if (@item.post.images != null)
+                {
+                    <img src="@item.post.images" />
+                }
+
+                @if (@item.post.video != null)
+                {
+                    <video controls="controls">
+                        <source src=@item.post.video type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                }
+
+            </div>
+        </article>
+    </section>
+    if (item.comments != null)
+    {
+        foreach (var comment in item.comments)
+        {
+            <br />
+            <section id="comments">
+                <h3 style="padding-left:25px;padding-top:10px">comments:</h3><br />
+                <!--all the comments-->
+
+                <article style="padding-left:30px">
+                    <header>
+                        @comment.title  by:@comment.author
+                    </header>
+                    <p>@comment.body</p>
+                </article>
+
+            </section>
+        }
+    }
+    <div>
+        <form action="/Post/addComment" style="padding-left:25px;padding-top:10px" id=" comments">
+            <br />
+            <h3>Add comment:</h3><br>
+            author: <input type="text" name="author"><br>
+            urlAuthor: <input type="text" name="urlAuthor"><br>
+            title: <input type="text" name="title"><br>
+            body: <input type="text" name="body"><br>
+            postId: <input type="text" name="postId" value="@item.post.id" readonly><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+}
+
+
+
