@@ -11,7 +11,33 @@ namespace mvc4_poject.Controllers
     {
         private PostDBContext db = new PostDBContext();
         private CommentDBContext db2 = new CommentDBContext();
+
         public ActionResult Index()
+        {
+            var fullpost = db.Posts.OrderByDescending(post => post.date).ToList();
+            var intropost = new List<PostIntro>();
+            foreach (var item in fullpost)
+            {
+                var newitem = new PostIntro();
+                char[] delimiterChars = { ',' };
+                if (item.images != null)
+                {
+                    if (item.images.Contains(','))
+                        newitem.image = item.images.Split(delimiterChars).First();
+                    else
+                        newitem.image = item.images;
+                }
+                else
+                {
+                    newitem.image = "Images/defualt/news.jpg";
+                }
+                newitem.id = item.id;
+                newitem.title = item.title;
+                intropost.Add(newitem);
+            }
+            return View(intropost);
+        }
+        /*public ActionResult Index()
         {
             var allPosts = db.Posts;
             var allPostCommets = new List<PostComments>();
@@ -33,9 +59,32 @@ namespace mvc4_poject.Controllers
             helper.PostComments = allPostCommets;
             helper.newComment = new Comment();
             return View(helper);
+        }*/
+        public ActionResult FullPost(int id){
+            var allPosts = (from m in db.Posts
+                            select m).Where(s => s.id == id);
+            var allPostCommets = new List<PostComments>();
+            var allComments = from m in db2.Comments
+                              select m;
+            foreach (var post in allPosts)
+            {
+                PostComments item = new PostComments();
+                item.post = post;
+                item.comments = allComments.Where(s => s.postId == post.id);
+                item.numberOfCom = item.comments.ToArray<Comment>().Length;
+                if (item.numberOfCom == 0)
+                {
+                    item.comments = null;
+                }
+                allPostCommets.Add(item);
+            }
+            var helper = new helperBlogController();
+            helper.PostComments = allPostCommets;
+            helper.newComment = new Comment();
+            return View(helper);
         }
 
-        public ActionResult addComment(int postId, string author, string body, string title, string urlAuthor)
+        public ActionResult addComment(int postId, string author, string body, string title)
         {
             Comment c = new Comment();
             c.author = author;
@@ -45,7 +94,7 @@ namespace mvc4_poject.Controllers
 
             db2.Comments.Add(c);
             db2.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("FullPost/"+postId);
         }
     }
 }

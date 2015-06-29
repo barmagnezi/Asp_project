@@ -20,7 +20,14 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            if (Request.IsAuthenticated)
+            {
+                return View(db.Posts.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -59,7 +66,8 @@ namespace mvc4_poject.Controllers
                 post.date = DateTime.Now.ToString();
                 /*
                 if(search.ToArray<Reporter>().Length==0)
-                    return RedirectToAction("Edit",post);*/
+                   return RedirectToAction("Edit",post);
+                 */
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -13,6 +13,10 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -30,9 +34,12 @@
         <nav class="navbar navbar-inverse" style="position: absolute;left: 0;width: 100%;">
             <ul class="nav navbar-nav">
                 <li style=" font-size: 2.5em;">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li style=" font-size: 2.5em;">@Html.ActionLink("About", "About", "Home")</li>
-                <li style=" font-size: 2.5em;">@Html.ActionLink("Manager", "Index", "Manager")</li>
+                <li style=" font-size: 2.5em;">@Html.ActionLink("All posts", "Index", "Post")</li>
                 <li style=" font-size: 2.5em;">@Html.ActionLink("Reporters", "Index", "Reporters")</li>
+                @if (Request.IsAuthenticated)
+                {
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Manager", "Index", "Manager")</li>
+                }
             </ul>
         </nav>
     </div>
