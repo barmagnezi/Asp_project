@@ -15,7 +15,8 @@
                     <h1>@item.post.title</h1>
                     <p>
                         <h4>Posted on (@item.post.date) </h4>
-                        <h4>Written by </h4>@Html.ActionLink("Details", "Details/"+@item.post.IdAuthor, "Reporters", new { id = item.post.IdAuthor }, null)
+                        <h4>Written by @item.post.author</h4>
+                        <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>click</a>
                         <h4>Category: @item.post.category</h4>
                         <h4>Number of comments:@(item.numberOfCom)</h4>
                     </p>

@@ -27,20 +27,24 @@ namespace mvc4_poject.Controllers
         public ActionResult Details(long id = 0)
         {
             Reporter reporter = db.Reporter.Find(id);
+            if (id == 0)
+            {
+                return RedirectToAction("Notfounddetails");
+            }
             if (reporter == null)
             {
                 return HttpNotFound();
             }
-            if (Request.IsAuthenticated)
-            {
+
                 return View(reporter);
-            }
-            else
-            {
-                return RedirectToAction("Denied", "Home");
-            }
+
         }
 
+        public ActionResult Notfounddetails()
+        {
+
+            return View();
+        }
         //
         // GET: /Reporters/Create
 

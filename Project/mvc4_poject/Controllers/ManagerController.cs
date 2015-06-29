@@ -35,12 +35,20 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Details(long id = 0)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Post post = db.Posts.Find(id);
+
+                if (post == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(post);
             }
-            return View(post);
+             else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -48,7 +56,14 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -58,21 +73,33 @@ namespace mvc4_poject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Post post)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-                var allrep = from m in dbReporter.Reporter
-                                  select m;
-                var search = allrep.Where(s => s.name == post.author);
-                post.date = DateTime.Now.ToString();
-                /*
-                if(search.ToArray<Reporter>().Length==0)
-                   return RedirectToAction("Edit",post);
-                 */
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var rep = (from m in dbReporter.Reporter
+                               where m.name == post.author
+                               select m);
+                    if (rep.ToArray<Reporter>().Length == 0)
+                    {
+                        post.IdAuthor = "0";
+                    }
+                    else
+                    {
+                        post.IdAuthor = "" + rep.First<Reporter>().ID;
+                    }
+
+                    post.date = DateTime.Now.ToString();
+                    db.Posts.Add(post);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(post);
             }
-            return View(post);
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
 
@@ -81,12 +108,19 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Edit(long id = 0)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Post post = db.Posts.Find(id);
+                if (post == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(post);
             }
-            return View(post);
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -96,13 +130,20 @@ namespace mvc4_poject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Post post)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(post).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(post);
             }
-            return View(post);
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -110,12 +151,19 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Delete(long id = 0)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Post post = db.Posts.Find(id);
+                if (post == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(post);
             }
-            return View(post);
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -125,10 +173,17 @@ namespace mvc4_poject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Request.IsAuthenticated)
+            {
+                Post post = db.Posts.Find(id);
+                db.Posts.Remove(post);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -140,32 +195,45 @@ namespace mvc4_poject.Controllers
         //comments
         public ActionResult Comments(long id = 0)
         {
-
-            Console.WriteLine("id:" + id);
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
-            }
-            var allComments = from m in db2.Comments
-                              select m;
+                Console.WriteLine("id:" + id);
+                Post post = db.Posts.Find(id);
+                if (post == null)
+                {
+                    return HttpNotFound();
+                }
+                var allComments = from m in db2.Comments
+                                  select m;
 
-            allComments = allComments.Where(s => s.postId == id);
-            if (allComments == null)
-                return HttpNotFound();
-            return View(allComments);
+                allComments = allComments.Where(s => s.postId == id);
+                if (allComments == null)
+                    return HttpNotFound();
+                return View(allComments);
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         public ActionResult DeleteComment(long PostId = 0, long CommentId = 0)
         {
-            Comment com = db2.Comments.Find(CommentId);
-            if (com == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Comment com = db2.Comments.Find(CommentId);
+                if (com == null)
+                {
+                    return HttpNotFound();
+                }
+                db2.Comments.Remove(com);
+                db2.SaveChanges();
+                return RedirectToAction("Index");
             }
-            db2.Comments.Remove(com);
-            db2.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
     }
 }
