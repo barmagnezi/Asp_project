@@ -15,7 +15,8 @@
                     <h1>@item.post.title</h1>
                     <p>
                         <h4>Posted on (@item.post.date) </h4>
-                        <h4>Written by </h4>@Html.ActionLink("Details", "Details/"+@item.post.IdAuthor, "Reporters", new { id = item.post.IdAuthor }, null)
+                        <h4>Written by @item.post.author</h4>
+                        <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>click</a>
                         <h4>Category: @item.post.category</h4>
                         <h4>Number of comments:@(item.numberOfCom)</h4>
                     </p>
@@ -43,17 +44,24 @@
             </article>
         </section>
     </div>
-
+    
+    <article style="padding-left:0px" id="headline">
+        <h3>comments:</h3><br />
+    </article>
+    
     if (item.comments != null)
     {
-        <h3 style="padding-left:25px ;padding-top:10px">comments:</h3><br />
         foreach (var comment in item.comments)
         {
             <br />
             <section id="comments">
-
                 <!--all the comments-->
-                <article style="padding-left:30px ">
+                <article style="padding-left:30px "><!--
+                                                        
+                                                    
+                    @{if(@comment.id.Equals(1)){
+                        <h3 style="padding-left:25px ;padding-top:10px">comments:</h3><br />
+                    }}-->
                     <header>
                         <h4>@comment.title</h4>   by:@comment.author
                     </header>
@@ -64,14 +72,16 @@
         }
     }    <br />
         <div>
-            <form action="/Post/addComment">
-                <h3>Add comment:</h3><br>
-                author: <input type="text" name="author"><br>
-                title: <input type="text" name="title"><br>
-                body: <input type="text" name="body"><br>
-                <input type="text" name="postId" value="@item.post.id" readonly hidden><br>
-                <input type="submit" value="Submit">
-            </form>
+            <article>
+                <form action="/Post/addComment">
+                    <h3>Add comment:</h3><br>
+                    author: <input type="text" name="author"><br>
+                    title: <input type="text" name="title"><br>
+                    body: <input type="text" name="body"><br>
+                    <input type="text" name="postId" value="@item.post.id" readonly hidden><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </article>
         </div>
 
 }
