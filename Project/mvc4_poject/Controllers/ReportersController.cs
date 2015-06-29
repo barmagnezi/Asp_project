@@ -31,7 +31,14 @@ namespace mvc4_poject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reporter);
+            if (Request.IsAuthenticated)
+            {
+                return View(reporter);
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -39,7 +46,14 @@ namespace mvc4_poject.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
         }
 
         //
@@ -69,7 +83,15 @@ namespace mvc4_poject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reporter);
+            if (Request.IsAuthenticated)
+            {
+                return View(reporter);
+            }
+            else
+            {
+                return RedirectToAction("Denied", "Home");
+            }
+
         }
 
         //
@@ -98,7 +120,14 @@ namespace mvc4_poject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reporter);
+            if (Request.IsAuthenticated)
+            {
+                return View(reporter);
+            }
+            else
+            {
+                return RedirectToAction("Denied");
+            }
         }
 
         //

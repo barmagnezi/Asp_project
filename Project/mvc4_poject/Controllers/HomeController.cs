@@ -49,6 +49,10 @@ namespace mvc4_poject.Controllers
                          select e).First();
             return Json(new { intro = mypost.intro }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Denied()
+        {
+            return View();
+        }
         
     }
 }

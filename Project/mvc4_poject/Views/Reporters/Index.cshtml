@@ -32,10 +32,17 @@
         </div>
     </div>
     <h3>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) ;
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) ;
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        }
     </h3>
 }
-<h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
+@if (Request.IsAuthenticated)
+{
+    <h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
+}
+
 
