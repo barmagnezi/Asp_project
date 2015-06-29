@@ -5,6 +5,83 @@
 }
 
 <h1><b>Our reporters:</b></h1>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <!--
+           <li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
+        -->
+        @{int counter=0;}
+        <li data-target="#myCarousel" data-slide-to=@counter class="active"></li>
+        @foreach (var helper in Model)
+        {
+            if (helper != Model.First())
+            {
+                <li data-target="#myCarousel" data-slide-to=@counter></li>
+            }
+        }
+        
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        @{counter=2;}
+        @foreach (var helper2 in Model)
+        {
+            if (counter.Equals(2))
+            {
+              <div class="item active" align="center">
+                  <img src=@helper2.img alt=@helper2.name width="250" height="250" align="middle">
+                <div class="carousel-caption">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <h3>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </h3>
+                    }
+                    else
+                    {
+                             <h3>@helper2.name</h3>
+                    }
+                </div>
+            </div>
+                counter = 3;
+            }
+            else
+            {
+                <div class="item" align="center">
+                    <img src=@helper2.img alt=@helper2.name width="250" height="250" align="middle">
+                    <div class="carousel-caption">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <h3>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </h3>
+                        }
+                        else
+                        {
+                            <h3>@helper2.name</h3>
+                        }
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
 @foreach (var item in Model)
 {
     <div>

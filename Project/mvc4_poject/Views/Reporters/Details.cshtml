@@ -10,6 +10,8 @@
     <legend>Reporter</legend>
 
     <h2>
+        <img src="@Model.img" width="100" height="100" align="middle">
+        <br />
         <u>ID:</u>
         @Html.DisplayFor(modelItem => modelItem.tz)
 
@@ -24,9 +26,6 @@
 
         <br /><u>Email:</u>
         @Html.DisplayFor(modelItem => modelItem.email)
-
-        <br /><u>Image:</u>
-        @Html.DisplayFor(modelItem => modelItem.img)
 
         <br /><u>Phone:</u>
         @Html.DisplayFor(modelItem => modelItem.phone)
