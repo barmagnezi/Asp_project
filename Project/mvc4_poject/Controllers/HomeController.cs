@@ -53,6 +53,10 @@ namespace mvc4_poject.Controllers
         {
             return View();
         }
-        
+     
+        public ActionResult Weather()
+        {
+            return View();
+        }
     }
 }
