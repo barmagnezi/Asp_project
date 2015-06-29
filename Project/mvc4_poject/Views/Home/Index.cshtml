@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Top 5 posts:</h2>
+<h2>Top posts:</h2>
 
 
 @foreach (var item in Model) {
@@ -16,7 +16,7 @@
          <h4 id="intro-@item.id"></h4>
       </div>
       <img src="@item.image">
-      <p ><a href="#" class="btn btn-primary" role="button" >Full Article</a> <span class="intro" data-idpost="@item.id"><a class="btn btn-default" role="button" id="introButton">Intro</a></span></p>
+      <p ><a href="/Post/FullPost/@item.id" class="btn btn-primary" role="button">Full Article</a> <span class="intro" data-idpost="@item.id"><a class="btn btn-default" role="button" id="introButton">Intro</a></span></p>
     </div>
   </div>
 </div>
