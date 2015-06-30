@@ -6,8 +6,11 @@
 
 <h2>All the posts:</h2>
 
-<table>
+<table class="table table-striped" style="border:double">
     <tr>
+        <th style="padding-right:10px">
+            @Html.DisplayNameFor(model => model.id)
+        </th>
         <th style="padding-right:10px">
             @Html.DisplayNameFor(model => model.title)
         </th>
@@ -18,24 +21,31 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.author)
-            </td>
+@foreach (var item in Model)
+{
+    <tr class="postInfo" data-postid="@item.id">
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                @Html.ActionLink("Comments", "Comments", new { id = item.id })
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            <a href="/Post/FullPost/@item.id" >Details</a> |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })|
+            @Html.ActionLink("Comments", "Comments", new { id = item.id })
+        </td>
+    </tr>
+        <tr>
+            <td colspan="4" class="postintroInfo" style="display:none" data-check = 0 >
             </td>
         </tr>
-    }
+}
 
 </table>
 <p></p>
@@ -50,3 +60,41 @@
     <li class="disabled"><a href="#">Disabled link</a></li>
     <li><a href="#">Another link</a></li>
 </ul>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".postInfo").click(function () {
+
+                var postId1 = $(this).attr("data-postid");                
+                var $nextElm = $(this).next().find("td");
+                if ($nextElm.attr("data-check") == 1) {
+                    $nextElm.attr("data-check",2);
+                    $nextElm.slideUp();
+                }else if ($nextElm.attr("data-check") == 2) {
+                    $nextElm.attr("data-check", 1);
+                    $nextElm.slideDown();
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("Getdetails", "Manager")',
+                        type: 'GET',
+                        dataType: 'json',
+
+                        cache: false,
+                        data: { Postid: postId1 },
+                        success: function (data) {
+                            var x = data;
+                            $nextElm.append("<p><u>Author: </u>" + data.author + "</p><p><u>Date: </u>" + data.date + "</p><p><u>Category: </u>" + data.category + "</p><p><u>Intro: </u>" + data.intro + "</p>");
+                            $nextElm.attr("data-check", 1);
+                            $nextElm.slideDown();
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+
+}

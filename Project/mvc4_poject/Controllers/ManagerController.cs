@@ -235,5 +235,13 @@ namespace mvc4_poject.Controllers
                 return RedirectToAction("Denied", "Home");
             }
         }
+
+        public ActionResult Getdetails(int Postid)
+        {
+            var mypost = (from e in db.Posts
+                          where e.id == Postid
+                          select e).First();
+            return Json(new { intro = mypost.intro, author = mypost.author, category=mypost.category ,date=mypost.date}, JsonRequestBehavior.AllowGet);
+        }
     }
 }
