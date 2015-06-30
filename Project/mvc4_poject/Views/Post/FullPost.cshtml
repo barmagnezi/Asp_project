@@ -15,8 +15,11 @@
                     <h1>@item.post.title</h1>
                     <p>
                         <h4>Posted on (@item.post.date) </h4>
-                        <h4>Written by @item.post.author</h4>
-                        <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>click</a>
+                        <h4>
+                            Written by
+                            <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>@item.post.author</a>
+                        </h4>
+
                         <h4>Category: @item.post.category</h4>
                         <h4>Number of comments:@(item.numberOfCom)</h4>
                     </p>
@@ -24,24 +27,87 @@
                 <p>
                     <h5>@item.post.intro</h5>
                 </p>
+                
+                    <div>
+                        <p>@item.post.body</p>
+                        @if (@item.post.images != null)
+                        {
+                            <!--
+                    <img src="@item.post.images" />
+                -->
+                            char[] delimiterChars = { ',' };
+                            string[] images = (item.post.images.Split(delimiterChars));
 
-                <div>
-                    <p>@item.post.body</p>
-                    @if (@item.post.images != null)
-                    {
-                        <img src="@item.post.images" />
-                    }
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <!--
+                               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            -->
+                                        @{int counter = 0;}
+                                        <li data-target="#myCarousel" data-slide-to=@counter class="active"></li>
+                                        @foreach (var helper in images)
+                                        {
+                                            counter=counter+1;
+                                            if (helper != images.First())
+                                            {
+                                                <li data-target="#myCarousel" data-slide-to=@counter></li>
+                                            }
+                                        }
 
-                    @if (@item.post.video != null)
-                    {
-                        <video controls="controls">
-                            <source src=@item.post.video type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    }
+                                    </ol>
 
-                </div>
-            </article>
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        @{counter = 2;}
+                                        @foreach (var helper2 in images)
+                                        {
+                                            if (counter.Equals(2))
+                                            {
+                                                <div class="item active" align="center">
+                                                    <img src=@helper2 alt="" width="700" height="700" align="middle">
+                                                    <div class="carousel-caption">
+                                                    </div>
+                                                </div>
+                                                        counter = 3;
+                                            }
+                                            else
+                                            {
+                                                <div class="item" align="center">
+                                                    <img src=@helper2 alt="" width="700" height="700" align="middle">
+                                                    <div class="carousel-caption">
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        }
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+
+
+                        }
+
+                        @if (@item.post.video != null)
+                        {
+                            <video controls="controls">
+                                <source src=@item.post.video type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+
+                    </div>
+</article>
         </section>
     </div>
     
