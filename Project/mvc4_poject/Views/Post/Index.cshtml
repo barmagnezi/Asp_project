@@ -4,12 +4,44 @@
     ViewBag.Title = "Index";
 }
 
-<h2>All posts:</h2>
+<div id="search">
+    <h2 style="padding-bottom:10px">Sort by category:</h2>
+    <span class="category_buttons" data-categry="All">
+        <button type="button" class="btn btn-default">All</button>
+    </span>
 
+    <span class="category_buttons" data-categry="Politics">
+        <button type="button" class="btn btn-primary">Politics</button>
+    </span>
+
+    <!-- Indicates a successful or positive action -->
+    <span class="category_buttons" data-categry="Economy">
+        <button type="button" class="btn btn-success">Economy</button>
+    </span>
+
+    <!-- Contextual button for informational alert messages -->
+    <span class="category_buttons" data-categry="Sports">
+        <button type="button" class="btn btn-info">Sports</button>
+    </span>
+
+    <!-- Indicates caution should be taken with this action -->
+    <span class="category_buttons" data-categry="Celebrity">
+        <button type="button" class="btn btn-warning">Celebrity</button>
+    </span>
+
+    <!-- Indicates a dangerous or potentially negative action -->
+    <span class="category_buttons" data-categry="Technology">
+        <button type="button" class="btn btn-danger">Technology</button>
+    </span>
+
+    <span class="category_buttons" data-categry="Others">
+        <button type="button" class="btn btn-default">Others</button>
+    </span>
+</div>
 
 @foreach (var item in Model)
 {
-    <div class="row" style="float: right; width: 50%">
+    <div class="row" style="float: right; width: 50%" data-categry="@item.category">
         <div class="col-sm-6 col-md-4" style="width:100%">
             <div class="thumbnail">
                 <div class="caption">
@@ -50,8 +82,21 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $(".intro").mousedown(function () {
-                //alert();
+            $(".category_buttons").mousedown(function () {
+                var c = $(this).attr("data-categry");
+                $(".row").each(function (item) {
+                    if (c == "All") {
+                        $(this).show();
+                    }
+                    else {
+                        if ($(this).data("categry") != c) {
+                            $(this).hide();
+                        } else {
+                            $(this).show();
+                        }
+                    }
+                });
+                
             })
         });
     </script>

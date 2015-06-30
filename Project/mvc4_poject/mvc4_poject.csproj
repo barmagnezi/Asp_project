@@ -312,9 +312,9 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Shared\Error.cshtml" />
+    <Content Include="Shared\_LoginPartial.cshtml" />
+    <Content Include="Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Reporters\Index.cshtml" />
     <Content Include="Views\Reporters\Details.cshtml" />

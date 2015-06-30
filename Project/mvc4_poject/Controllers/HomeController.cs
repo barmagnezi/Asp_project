@@ -31,6 +31,7 @@ namespace mvc4_poject.Controllers
                 }
                 newitem.id = item.id;
                 newitem.title = item.title;
+                newitem.category = item.category;
                 Top5intropost.Add(newitem);
             }
             return View(Top5intropost);

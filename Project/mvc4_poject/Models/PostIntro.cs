@@ -10,5 +10,6 @@ namespace mvc4_poject.Models
         public long id;
         public string title { get; set; }
         public string image { get; set; }
+        public string category { get; set; }
     }
 }
