@@ -332,6 +332,7 @@
     <Content Include="Views\Home\Denied.cshtml" />
     <Content Include="Views\Post\FullPost.cshtml" />
     <Content Include="Views\Reporters\Notfounddetails.cshtml" />
+    <Content Include="Views\Home\Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
