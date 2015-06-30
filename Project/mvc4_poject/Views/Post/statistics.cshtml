@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "statistics";
+}
+<br />
+<br />
+<h1><b>Post statistics:</b></h1>
+
+
+
+
+<h3>Number of post for each category:</h3>
+<style>
+    .chart rect {
+        fill: steelblue;
+    }
+
+    .chart text {
+        font: 10px sans-serif;
+    }
+
+    .axis path {
+        display: none;
+    }
+
+    .axis line {
+        stroke: #fff;
+        stroke-opacity: .5;
+        shape-rendering: crispEdges;
+    }
+</style>
+
+<div style="float:left;font-size:small">
+    <div id="names" style="padding-top:30px">
+        <!--aaa<br />
+        aaa<br />
+        aaa<br />
+        aaa<br />-->
+    </div>
+</div>
+<div style="">
+    <svg class="chart"></svg>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+    <script>
+    var Sdata = null;
+    var Ndata = null;
+    $.ajax({
+        url: '@Url.Action("getStatistics", "Post")',
+        type: 'GET',
+        dataType: 'json',
+
+        cache: false,
+        data: {  },
+        success: function (data) {
+            Sdata = data.Sdata;
+            Ndata = data.names;
+            for(i=0;i<data.len;i++){
+                document.getElementById("names").innerHTML += Ndata[i] + "<br />";
+            }
+            var data = Sdata;
+            var margin = { top: 30, right: 0, bottom: 0, left: 30 },
+                width = 420,
+                barHeight = 20,
+                height = barHeight * data.length;
+
+            var x = d3.scale.linear()
+                .domain([0, d3.max(data)])
+                .range([0, width]);
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("top")
+                .tickSize(-height);
+
+            var chart = d3.select(".chart")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            chart.append("g")
+                .attr("class", "bars")
+              .selectAll("rect")
+                .data(data)
+              .enter().append("rect")
+                .attr("y", function (d, i) { return i * barHeight; })
+                .attr("height", barHeight - 1)
+                .attr("width", x);
+
+            chart.append("g")
+                .attr("class", "axis")
+                .call(xAxis)
+              .select(".tick line")
+                .style("stroke", "#000");
+
+        }
+    });
+
+    </script>
+</div>

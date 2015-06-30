@@ -97,5 +97,22 @@ namespace mvc4_poject.Controllers
             db2.SaveChanges();
             return RedirectToAction("FullPost/"+postId);
         }
+        public ActionResult statistics()
+        {
+            return View();
+        }
+        public ActionResult getStatistics()
+        {
+            List<int> Adata = new List<int>();
+            List<string> Anames = new List<string>();
+            var a = (from m in db.Posts
+                     select m).GroupBy(g => g.category).Select(r => new { Id = r.Key, Count = r.Count() }).ToList();
+            foreach (var item in a)
+            {
+                Adata.Add(item.Count);
+                Anames.Add(item.Id);
+            }
+            return Json(new { names = Anames, Sdata = Adata.ToArray<int>(), len = Anames.ToArray().Length }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
