@@ -1,9 +1,8 @@
 ﻿@model mvc4_poject.Models.helperBlogController
 
 @{
-    ViewBag.Title = "Index2";
-}
-
+    ViewBag.Title = Model.PostComments.First().post.title;
+ }
 <h1></h1>
 <!--always will be one-->
 @foreach (var item in Model.PostComments)
@@ -100,7 +99,7 @@
 
                         @if (@item.post.video != null)
                         {
-                            <video controls="controls">
+                            <video controls="controls" style="padding-top:15px">
                                 <source src=@item.post.video type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
