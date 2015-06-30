@@ -30,6 +30,25 @@
         <br /><u>Phone:</u>
         @Html.DisplayFor(modelItem => modelItem.phone)
     </h2>
+
+    <!--
+    SELECT Customers.CustomerName, Orders.OrderID
+    FROM Customers
+    INNER JOIN Orders
+    ON Customers.CustomerID=Orders.CustomerID
+    -->
+
+    @{
+        var db = Database.Open("PostDBContext");
+        var Query = "SELECT * FROM Posts WHERE IdAuthor="+@Model.ID;
+        var data = db.QuerySingle(Query);
+     }
+    @foreach (var row in db.Query(Query))
+    {
+        <a style="margin-right:8px" href="/Post/FullPost/@row.id" class="btn btn-info" role="button">@row.title</a>
+    }
+
+
 </fieldset>
 <br />
 <h2>
