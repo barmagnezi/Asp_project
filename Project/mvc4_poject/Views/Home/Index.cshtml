@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Search by:</h2>
+<h2>Search:</h2>
 @using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
         <h3>
@@ -22,7 +22,7 @@
             <input type="submit" style="margin-left:10px" class="btn btn-primary btn-default" role="button" value="Search" />
         </h3>
 }
-<h2>Top posts:</h2>
+<h2 style="text-decoration: underline;">Top posts:</h2>
 @foreach (var item in Model) {
     <div class="row" style="float: left; width: 50%;">
   <div class="col-sm-6 col-md-4" style="width:100%">

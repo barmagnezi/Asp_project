@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>@ViewBag.Title - S&B News</title>
     <link href="~/sbicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <!-- Latest compiled and minified CSS -->
@@ -23,8 +23,6 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
-    <img src="/Images/defualt/title.png" style="height: 170px;" />
     <div>
         <nav class="navbar navbar-inverse" style="position: absolute;left: 0;width: 100%;">
             <ul class="nav navbar-nav">
@@ -53,6 +51,9 @@
     </div>
 
     <div id="body">
+        <div>
+            <img src="/Images/defualt/title.png" style="height: 170px;margin-top:45px;margin-left:auto;margin-right:auto" />
+        </div>
         @RenderSection("featured", required: false)
         <div style="padding-left: 25px ;padding-top:40px">
             @RenderBody()
