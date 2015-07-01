@@ -60,7 +60,7 @@ namespace mvc4_poject.Controllers
             return View();
         }
 
-        public ActionResult Search(string PostCat, string searchString)
+        public ActionResult Search(string PostCat, string title, string author)
         {
             var CatLst = new List<string>();
 
@@ -74,17 +74,19 @@ namespace mvc4_poject.Controllers
             var posts = from m in db.Posts
                          select m;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(title))
             {
-                posts = posts.Where(s => s.title.Contains(searchString));
+                posts = posts.Where(s => s.title.Contains(title));
             }
 
-            if (string.IsNullOrEmpty(PostCat))
+            if (!string.IsNullOrEmpty(PostCat)){
+                posts = posts.Where(x => x.category == PostCat);
+            }
+            if(string.IsNullOrEmpty(author)){
                 return View(posts);
-            else
-            {
-                return View(posts.Where(x => x.category == PostCat));
-            } 
+            }else{
+                return View(posts.Where(y => y.author == author));
+            }
         }
     }
 }
