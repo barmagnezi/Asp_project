@@ -170,5 +170,14 @@ namespace mvc4_poject.Controllers
             }
             return Json(new { names = Anames, Sdata = Adata.ToArray<int>() ,len=Anames.ToArray().Length}, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetReportes()
+        {
+            List<string> names = new List<string>();
+            foreach (var item in db.Reporter)
+            {
+                names.Add(item.name);
+            }
+            return Json(new { Names = names,len=names.ToArray().Length}, JsonRequestBehavior.AllowGet);
+        }
    }
 }

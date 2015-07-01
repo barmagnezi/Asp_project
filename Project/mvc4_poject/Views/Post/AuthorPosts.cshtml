@@ -1,44 +1,37 @@
-﻿@{
-    ViewBag.Title = "Posts of authors";
+﻿@model IEnumerable<mvc4_poject.Models.ReporterAndPosts>
+
+@{
+    ViewBag.Title = "AuthorPosts";
 }
 
-<h2>Posts of authors</h2>
-<table>
+<h2>AuthorPosts</h2>
+
+
+<table class="table table-striped" style="border:double">
     <tr>
-        <td>Author</td>
-        <td>Posts</td>
+        <th style="padding-right: 10px; background-color: #4ad06e">id post</th>
+        <th style="padding-right: 10px; background-color: #4ad06e">title</th>
+        <th style="padding-right: 10px; background-color: #4ad06e">Post date</th>
+        <th style="padding-right: 10px; background-color: #4db1ee">id reporter</th>
+        <th style="padding-right: 10px; background-color: #4db1ee">name reporter</th>
+        <th style="padding-right: 10px; background-color: #4db1ee">phone reporter</th>
+        <th style="padding-right: 10px; background-color: #4db1ee">phone reporter</th>
     </tr>
 
-
-    <!--
-    SELECT Customers.CustomerName, Orders.OrderID
-    FROM Customers
-    INNER JOIN Orders
-    ON Customers.CustomerID=Orders.CustomerID
-    -->
-    @{
-        
-        foreach (var line in ViewBag.query)
-        {
-            <a>line.AuthorName</a>
-        }
-        
-    
-            
-             <!-- 
-        var db = Database.Open("PostDBContext");
-        Database.Open("ReporterDBContext");
-       
-            var Query = "SELECT * FROM Posts INNER JOIN Reporters ON Posts.IdAuthor=Reporters.ID";
-            --><!--
-        var Query = "SELECT * FROM Posts INNER JOIN Reporters on Posts.IdAuthor = Reporters.ID WHERE Posts.IdAuthor=Reporters.ID";
-        var data = db.QuerySingle(Query);
-    }
-    foreach (var row in db.Query(Query))
+    @foreach (var item in Model)
     {
-        <a > row.title row.IdAuthor</a><br />-->
-        <!--
-            <a style="margin-right:8px" href="/Post/FullPost/" class="btn btn-info" role="button"></a>
-        -->
+        <tr>
+            <td style="background-color: #4ad06e">@item.posts.id</td>
+            <td style ="background-color: #4ad06e">@item.posts.title</td>
+            <td style="background-color: #4ad06e">@item.posts.date</td>
+            <td style="background-color: #4db1ee">@item.rep.ID</td>
+            <td style="background-color: #4db1ee">@item.rep.name</td>
+            <td style="background-color: #4db1ee">@item.rep.phone</td>
+            <td style="background-color: #4db1ee">@item.rep.email</td>
+      </tr>
     }
+
 </table>
+
+<h1 style="background-color: #4db1ee">all the data with this background got from Reporters database</h1>
+<h1 style="background-color: #4ad06e; ">all the data with this background got from Posts database</h1>

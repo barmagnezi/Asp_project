@@ -101,13 +101,46 @@ namespace mvc4_poject.Controllers
 
         public ActionResult AuthorPosts()
         {
-            var query = (db.Posts)         // source
-           .Join(dbRep.Reporter,         // target
+            /*doesn't work!!!
+             * 1
+             * var query =dbRep.Reporter.Join(db.Posts,
+                p=>p.ID,
+                r=>Convert.ToInt32(r.IdAuthor),
+                (p,r)=>new{
+                    reporter=p,
+                    post=r
+                }).ToArray();
+            2!!
+            var qq=(from s in db.Posts
+                   join reporter in dbRep.Reporter on s.IdAuthor equals reporter.ID.ToString()
+                   select new{rep=reporter,pos=s}).ToList();
+             * 
+             * 3!!!
+             *  /*var query = (db.Posts).      // source
+           Join(dbRep.Reporter,         // target
               c => c.IdAuthor,          // FK-Foreign key
               cm => cm.ID.ToString(),   // PK-Primary key
-              (c, cm) => new { AuthorID = cm.ID, AuthorName = cm.name, title = c.title, PostId = c.id }).ToList();  // project result
-            ViewBag.query = query;
-            return View();
+              (c, cm) => new { AuthorID = cm.ID, AuthorName = cm.name, title = c.title, PostId = c.id }).ToList();  // project result*/
+            List<ReporterAndPosts> All = new List<ReporterAndPosts>();
+            foreach(var post in db.Posts){
+                Reporter rep;
+                if(post.IdAuthor=="0"){
+                        rep=new Reporter();
+                        rep.ID=0;
+                        rep.phone="none";
+                        rep.email="none";
+                        rep.name=post.author;
+                }else
+                    rep=dbRep.Reporter.Find(Convert.ToInt32(post.IdAuthor));
+                var item=new ReporterAndPosts();
+                item.rep=rep;
+                item.posts=post;
+                All.Add(item);
+            }
+
+          
+
+            return View(All);
         }
 
         public ActionResult statistics()

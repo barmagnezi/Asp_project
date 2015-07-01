@@ -25,7 +25,10 @@
             @Html.LabelFor(model => model.author)
         </div>
         <div class="editor-field" style="width:300px">
-            <input type="text" class="form-control" placeholder="author" name="author" id="author">
+            <select id="reporterName" class="form-control" onchange="javascript: document.getElementById('author').value = this.value" style="width:50%;float:left">
+
+            </select>
+            <input type="text" class="form-control" placeholder="author" name="author" id="author" style="">
         </div>
 
         <div class="editor-label">
@@ -34,7 +37,7 @@
 
         
         <div  style="width:300px">
-            <select class="form-control" onchange="javascript: document.getElementById('category').value = this.value" style="width:50%" >
+            <select  class="form-control" onchange="javascript: document.getElementById('category').value = this.value" style="width:50%" >
                 <option value="Economy">Economy</option>
                 <option value="Politics">Politics</option>
                 <option value="Sports">Sports</option>
@@ -87,5 +90,26 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetReportes", "Reporters")',
+                type: 'GET',
+                dataType: 'json',
+
+                cache: false,
+                data: {},
+                success: function (data) {
+                    var x = data.Names;
+                    for (i = 0; i < data.len; i++) {
+                        document.getElementById("reporterName").innerHTML += "<option value='" + x[i] + "'>" + x[i] + "</option>";
+                    }
+                    document.getElementById("intro-" + Id1).innerHTML = data.intro;
+                }
+            });
+
+        });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }
