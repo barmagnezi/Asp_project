@@ -12,6 +12,7 @@ namespace mvc4_poject.Controllers
     public class ReportersController : Controller
     {
         private ReporterDBContext db = new ReporterDBContext();
+        private PostDBContext db2 = new PostDBContext();
 
         //
         // GET: /Reporters/
@@ -152,5 +153,22 @@ namespace mvc4_poject.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }
+
+        public ActionResult getStatistics()
+        {
+            List<int> Adata = new List<int>();
+            List<string> Anames=new List<string>();
+            var a=(from m in db2.Posts
+                   select m).GroupBy(g => g.IdAuthor).Select(r => new { Id = r.Key, Count = r.Count() }).ToList();
+            foreach (var item in a)
+            {
+                Adata.Add(item.Count);
+                if (db.Reporter.Find(Convert.ToInt32(item.Id)) == null)
+                    Anames.Add("Others");
+                else
+                    Anames.Add(db.Reporter.Find( Convert.ToInt32(item.Id)).name);
+            }
+            return Json(new { names = Anames, Sdata = Adata.ToArray<int>() ,len=Anames.ToArray().Length}, JsonRequestBehavior.AllowGet);
+        }
+   }
 }
