@@ -12,7 +12,7 @@ namespace mvc4_poject.Controllers
         private PostDBContext db = new PostDBContext();
         public ActionResult Index()
         {
-            var Top5fullpost= db.Posts.OrderByDescending(post => post.date).Take(4).ToList();
+            var Top5fullpost = db.Posts.OrderByDescending(post => post.id).Take(6).ToList();
             var Top5intropost = new List<PostIntro>();
             foreach (var item in Top5fullpost)
             {
