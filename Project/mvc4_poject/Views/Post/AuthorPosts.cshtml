@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Posts of authors";
+}
+
+<h2>Posts of authors</h2>
+<table>
+    <tr>
+        <td>Author</td>
+        <td>Posts</td>
+    </tr>
+
+
+    <!--
+    SELECT Customers.CustomerName, Orders.OrderID
+    FROM Customers
+    INNER JOIN Orders
+    ON Customers.CustomerID=Orders.CustomerID
+    -->
+    @{
+        
+        foreach (var line in ViewBag.query)
+        {
+            <a>line.AuthorName</a>
+        }
+        
+    
+            
+             <!-- 
+        var db = Database.Open("PostDBContext");
+        Database.Open("ReporterDBContext");
+       
+            var Query = "SELECT * FROM Posts INNER JOIN Reporters ON Posts.IdAuthor=Reporters.ID";
+            --><!--
+        var Query = "SELECT * FROM Posts INNER JOIN Reporters on Posts.IdAuthor = Reporters.ID WHERE Posts.IdAuthor=Reporters.ID";
+        var data = db.QuerySingle(Query);
+    }
+    foreach (var row in db.Query(Query))
+    {
+        <a > row.title row.IdAuthor</a><br />-->
+        <!--
+            <a style="margin-right:8px" href="/Post/FullPost/" class="btn btn-info" role="button"></a>
+        -->
+    }
+</table>

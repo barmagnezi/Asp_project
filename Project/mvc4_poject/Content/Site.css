@@ -252,6 +252,23 @@ section.feature {
     padding: 10px;
 }
 
+/* Added by senia 01/07/15 */
+.imageS { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+s5 { 
+   color: #000;
+   font-family: 'Montserrat', sans-serif;
+   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+   font-size: 3.5em;
+   position: absolute;
+   top: 10px; 
+   left: 35px; 
+   width: 100%; 
+}
+
 /* ordered list */
 ol.round {
     list-style-type: none;

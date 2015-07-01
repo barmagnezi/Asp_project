@@ -333,6 +333,8 @@
     <Content Include="Views\Post\FullPost.cshtml" />
     <Content Include="Views\Reporters\Notfounddetails.cshtml" />
     <Content Include="Views\Home\Weather.cshtml" />
+    <Content Include="Views\Post\AuthorPosts.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

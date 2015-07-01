@@ -11,6 +11,7 @@ namespace mvc4_poject.Controllers
     {
         private PostDBContext db = new PostDBContext();
         private CommentDBContext db2 = new CommentDBContext();
+        private ReporterDBContext dbRep = new ReporterDBContext();
 
         public ActionResult Index()
         {
@@ -96,6 +97,17 @@ namespace mvc4_poject.Controllers
             db2.Comments.Add(c);
             db2.SaveChanges();
             return RedirectToAction("FullPost/"+postId);
+        }
+
+        public ActionResult AuthorPosts()
+        {
+            var query = (db.Posts)         // source
+           .Join(dbRep.Reporter,         // target
+              c => c.IdAuthor,          // FK-Foreign key
+              cm => cm.ID.ToString(),   // PK-Primary key
+              (c, cm) => new { AuthorID = cm.ID, AuthorName = cm.name, title = c.title, PostId = c.id }).ToList();  // project result
+            ViewBag.query = query;
+            return View();
         }
     }
 }

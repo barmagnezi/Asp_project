@@ -31,13 +31,6 @@
         @Html.DisplayFor(modelItem => modelItem.phone)
     </h2>
 
-    <!--
-    SELECT Customers.CustomerName, Orders.OrderID
-    FROM Customers
-    INNER JOIN Orders
-    ON Customers.CustomerID=Orders.CustomerID
-    -->
-
     @{
         var db = Database.Open("PostDBContext");
         var Query = "SELECT * FROM Posts WHERE IdAuthor="+@Model.ID;

@@ -59,5 +59,32 @@ namespace mvc4_poject.Controllers
         {
             return View();
         }
+
+        public ActionResult Search(string PostCat, string searchString)
+        {
+            var CatLst = new List<string>();
+
+            var CatQry = from d in db.Posts
+                           orderby d.category
+                           select d.category;
+            CatLst.AddRange(CatQry.Distinct());
+
+            ViewBag.PostCat = new SelectList(CatLst);
+
+            var posts = from m in db.Posts
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                posts = posts.Where(s => s.title.Contains(searchString));
+            }
+
+            if (string.IsNullOrEmpty(PostCat))
+                return View(posts);
+            else
+            {
+                return View(posts.Where(x => x.category == PostCat));
+            } 
+        }
     }
 }
