@@ -4,15 +4,12 @@
     ViewBag.Title = "Comments";
 }
 
-<h2>Comments</h2>
-
-
 @if(Model.ToArray().Length==0 || Model==null){
-    <p> No comments!!!!!!!</p>
-
+    <h1 style="text-decoration: underline;"> No comments!</h1>
 }
 else
 {
+    <h2 style="text-decoration: underline;">Comments</h2>
     <table>
         <tr>
             <td>id</td>
@@ -35,9 +32,9 @@ else
         }
 
     </table>
-        @Html.ActionLink("Back to List", "Index")
 }
-
-
+<h1 style="color:red">
+    @Html.ActionLink("Back<", "Index")
+</h1>
 
 

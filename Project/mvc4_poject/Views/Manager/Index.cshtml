@@ -3,8 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
+<h1>
+    @Html.ActionLink("Admin setting,", "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
 
-<h2>All the posts:</h2>
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
+
+</h1>
+
+
+
+<h2 style="display: inline"><br />All the posts:</h2>
 
 <table class="table table-striped" style="border:double">
     <tr>
@@ -51,8 +63,9 @@
 <p></p>
 <p></p>
 <p></p>
-<p>
-    @Html.ActionLink("Add New Post", "Create")
+<p><h1>@Html.ActionLink("Add New Post", "Create")
+    </h1>
+    
 </p>
 
 <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">

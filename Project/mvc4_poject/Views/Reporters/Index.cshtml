@@ -5,7 +5,7 @@
 }
 
 <!--start!!!!!!!!!!-->
-<h1><b>Our reporters:</b></h1>
+<h1><b style="text-decoration: underline">Our reporters:</b></h1><br />
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -60,10 +60,10 @@
     </a>
 </div>
 
-<h2>Search:</h2>
+<h2 style="text-decoration: underline;display: inline">Search:</h2>
 @using (Html.BeginForm("Search", "Reporters", FormMethod.Get))
 {
-    <h3>
+    <h3 style="display: inline">
         Name: @Html.TextBox("Sname")
         Phone: @Html.TextBox("Sphone")
         Email: @Html.TextBox("Semail")
@@ -79,7 +79,7 @@
         </div>
 
         <div>
-            <h2>
+            <h2 style="display: inline">
                 <u>Name:</u>
                 @Html.ActionLink(item.name, "Details", new { id = item.ID })
                 <br /><u>Info:</u>
@@ -96,18 +96,20 @@
             </h2>
         </div>
     </div>
-    <h3>
-        @if (Request.IsAuthenticated)
+    <h1 style="display:inline">
+        @if(Request.IsAuthenticated)
         {
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) ;
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) ;
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) ;
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) ;
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
         }
-    </h3>
+        <br /><br />
+    </h1>
 }
 @if (Request.IsAuthenticated)
 {
-    <h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
+    <a href="/Reporters/Create" type="submit" style="margin-left:15px" class="btn btn-success" role="button">Add a new reporter</a>
 }
 
 <!--statistics!!!!!!!!!!!!!!!!-->

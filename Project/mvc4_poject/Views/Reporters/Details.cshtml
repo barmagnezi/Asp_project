@@ -44,7 +44,17 @@
 
 </fieldset>
 <br />
-<h2>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back", "Index")
-</h2>
+
+    @if (Request.IsAuthenticated)
+    {
+        <h2>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back", "Index")
+        </h2>
+    }
+    else
+    {
+        <h2>
+            @Html.ActionLink("Back", "Index")
+        </h2>
+    }

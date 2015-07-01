@@ -28,10 +28,9 @@
         </div>
 
         <div>
-            <h2>
+            <h2 style="display: inline">
                 <u>Name:</u>
-                @Html.DisplayFor(modelItem => item.name)
-
+                @Html.ActionLink(item.name, "Details", new { id = item.ID })
                 <br /><u>Info:</u>
                 @Html.DisplayFor(modelItem => item.info)
 
@@ -46,16 +45,18 @@
             </h2>
         </div>
     </div>
-    <h3>
+    <h1 style="display:inline">
         @if (Request.IsAuthenticated)
         {
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) ;
             @Html.ActionLink("Details", "Details", new { id = item.ID }) ;
             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
         }
-    </h3>
+        <br /><br />
+    </h1>
 }
 @if (Request.IsAuthenticated)
 {
-    <h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
+    <a href="/Reporters/Create" type="submit" style="margin-left:15px" class="btn btn-success" role="button">Add a new reporter</a>
 }

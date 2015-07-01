@@ -24,22 +24,30 @@
 </head>
 <body>
 
-    <img src="/Images/defualt/title.png" style="height: 170px; width: 100%" />
-        <section id="login">
-            @Html.Partial("_LoginPartial")
-        </section>
-
+    <img src="/Images/defualt/title.png" style="height: 170px;" />
     <div>
         <nav class="navbar navbar-inverse" style="position: absolute;left: 0;width: 100%;">
             <ul class="nav navbar-nav">
                 <li style=" font-size: 2.5em;">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li style=" font-size: 2.5em;">@Html.ActionLink("All posts", "Index", "Post")</li>
-                <li style=" font-size: 2.5em;">@Html.ActionLink("Reporters", "Index", "Reporters")</li>
+                @if (Request.IsAuthenticated)
+                {
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Reporters(Admin)", "Index", "Reporters")</li>
+                }
+                else
+                {
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Reporters", "Index", "Reporters")</li>
+                }
                 <li style=" font-size: 2.5em;">@Html.ActionLink("Weather", "Weather", "Home")</li>
                 @if (Request.IsAuthenticated)
                 {
-                    <li style=" font-size: 2.5em;">@Html.ActionLink("Manager", "Index", "Manager")</li>
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Admin(" + User.Identity.Name+")", "Index", "Manager")</li>
                 }
+                else
+                {
+                    <li style=" font-size: 2.5em;">@Html.ActionLink("Admin Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                }
+                
             </ul>
         </nav>
     </div>

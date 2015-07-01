@@ -80,14 +80,14 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <button type="submit" class="btn btn-info btn-lg"><span aria-hidden="true"></span>Create</button>
         </p>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<h1 style="display: inline">
+    @Html.ActionLink("Back", "Index")
+</h1>
 
 @section Scripts {
     <script type="text/javascript">

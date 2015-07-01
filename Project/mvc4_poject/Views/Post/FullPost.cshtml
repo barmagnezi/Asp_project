@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Model.PostComments.First().post.title;
  }
-<h1></h1>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
 <!--always will be one-->
 @foreach (var item in Model.PostComments)
 {
@@ -23,7 +23,7 @@
                     </p>
                 </header>
                 <p>
-                    <h5 style="font-size: medium; text-decoration: underline;">@item.post.intro</h5>
+                    <h5 style="font-size: medium">@item.post.intro</h5>
                 </p>
                 
                     <div>
