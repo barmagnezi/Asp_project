@@ -194,5 +194,14 @@ namespace mvc4_poject.Controllers
                 return View(reporters.Where(y => y.email.Contains(Semail)));
             }
         }
+        public ActionResult GetReportes()
+        {
+            List<string> names = new List<string>();
+            foreach (var item in db.Reporter)
+            {
+                names.Add(item.name);
+            }
+            return Json(new { Names = names, len = names.ToArray().Length }, JsonRequestBehavior.AllowGet);
+        }
    }
 }
