@@ -4,6 +4,47 @@
     font-style:italic;
     font-size:x-large;
 }
+
+/* Added by senia 01/07/15 */
+
+p.groove {border-style: groove;}
+
+.imageS { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+s5 { 
+   color: #000;
+   font-family: 'Montserrat', sans-serif;
+   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+   font-size: 3.5em;
+   position: absolute;
+   top: 10px; 
+   left: 35px; 
+   width: 100%; 
+}
+s6 { 
+   color: white;
+    text-shadow:
+    -0.75px -0.75px 0 #FFF,
+    0.75px -0.75px 0 #FFF,
+    -0.75px 0.75px 0 #FFF,
+    0.75px 0.75px 0 #FFF;  
+   font-size: 3.5em;
+}
+
+b2{
+    font-size: 3.5em;
+    text-decoration: underline;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px #FFF;
+}
+
+h2Cat{
+    font-size: 1.5em;
+}
+
 /*defualt!!!
     */
 html {
@@ -260,22 +301,6 @@ section.feature {
     padding: 10px;
 }
 
-/* Added by senia 01/07/15 */
-.imageS { 
-   position: relative; 
-   width: 100%; /* for IE 6 */
-}
-
-s5 { 
-   color: #000;
-   font-family: 'Montserrat', sans-serif;
-   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-   font-size: 3.5em;
-   position: absolute;
-   top: 10px; 
-   left: 35px; 
-   width: 100%; 
-}
 
 /* ordered list */
 ol.round {

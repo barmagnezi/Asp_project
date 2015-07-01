@@ -1,0 +1,61 @@
+﻿@model IEnumerable<mvc4_poject.Models.Reporter>
+
+@{
+    ViewBag.Title = "Search results:";
+}
+
+<h2>Search results:</h2>
+<p>
+
+    @using (Html.BeginForm("Search", "Reporters", FormMethod.Get))
+    {
+
+        <h3>
+            Name: @Html.TextBox("Sname")
+            Phone: @Html.TextBox("Sphone")
+            Email: @Html.TextBox("Semail")
+            <input type="submit" style="margin-left:10px" class="btn btn-primary btn-default" role="button" value="Search" />
+        </h3>
+    }
+    <a href="/Reporters" type="submit" style="margin-left:1050px;margin-top:3px" class="btn btn-danger " role="button">Back to all</a>
+</p>
+
+@foreach (var item in Model)
+{
+    <div>
+        <div>
+            <img src="@item.img" width="100" height="100" align="middle">
+        </div>
+
+        <div>
+            <h2>
+                <u>Name:</u>
+                @Html.DisplayFor(modelItem => item.name)
+
+                <br /><u>Info:</u>
+                @Html.DisplayFor(modelItem => item.info)
+
+                <br /><u>Birthday:</u>
+                @Html.DisplayFor(modelItem => item.bd)
+
+                <br /><u>Email:</u>
+                @Html.DisplayFor(modelItem => item.email)
+
+                <br /><u>Phone:</u>
+                @Html.DisplayFor(modelItem => item.phone)
+            </h2>
+        </div>
+    </div>
+    <h3>
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) ;
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) ;
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        }
+    </h3>
+}
+@if (Request.IsAuthenticated)
+{
+    <h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
+}

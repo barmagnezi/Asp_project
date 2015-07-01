@@ -6,10 +6,6 @@
 
 <!--start!!!!!!!!!!-->
 <h1><b>Our reporters:</b></h1>
-
-
-
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -18,14 +14,11 @@
         -->
         @{int counter=0;}
         <li data-target="#myCarousel" data-slide-to=@counter class="active"></li>
-        @foreach (var helper in Model)
+        @{counter=counter+1;}
+        @for (var i = 1; i < Model.Count(); i++,counter++)
         {
-            if (helper != Model.First())
-            {
-                <li data-target="#myCarousel" data-slide-to=@counter></li>
-            }
+            <li data-target="#myCarousel" data-slide-to=@counter></li>
         }
-        
     </ol>
 
     <!-- Wrapper for slides -->
@@ -38,14 +31,7 @@
               <div class="item active" align="center">
                   <img src=@helper2.img alt=@helper2.name width="250" height="250" align="middle">
                 <div class="carousel-caption">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <h3>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </h3>
-                    }
-                    else
-                    {
-                             <h3>@helper2.name</h3>
-                    }
+                    <s6>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </s6>
                 </div>
             </div>
                 counter = 3;
@@ -55,14 +41,7 @@
                 <div class="item" align="center">
                     <img src=@helper2.img alt=@helper2.name width="250" height="250" align="middle">
                     <div class="carousel-caption">
-                        @if (Request.IsAuthenticated)
-                        {
-                            <h3>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </h3>
-                        }
-                        else
-                        {
-                            <h3>@helper2.name</h3>
-                        }
+                    <s6>@Html.ActionLink(@helper2.name, "Details", new { id = helper2.ID }) </s6>
                     </div>
                 </div>
             }
@@ -81,6 +60,17 @@
     </a>
 </div>
 
+<h2>Search:</h2>
+@using (Html.BeginForm("Search", "Reporters", FormMethod.Get))
+{
+    <h3>
+        Name: @Html.TextBox("Sname")
+        Phone: @Html.TextBox("Sphone")
+        Email: @Html.TextBox("Semail")
+        <input type="submit" style="margin-left:10px" class="btn btn-primary btn-default" role="button" value="Search" />
+    </h3>
+}
+
 @foreach (var item in Model)
 {
     <div>
@@ -91,8 +81,7 @@
         <div>
             <h2>
                 <u>Name:</u>
-                @Html.DisplayFor(modelItem => item.name)
-
+                @Html.ActionLink(item.name, "Details", new { id = item.ID })
                 <br /><u>Info:</u>
                 @Html.DisplayFor(modelItem => item.info)
 
@@ -120,6 +109,7 @@
 {
     <h2>@Html.ActionLink("Add a new reporter", "Create")</h2>
 }
+
 <!--statistics!!!!!!!!!!!!!!!!-->
 <br />
 <br />

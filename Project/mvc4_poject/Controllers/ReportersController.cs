@@ -170,5 +170,29 @@ namespace mvc4_poject.Controllers
             }
             return Json(new { names = Anames, Sdata = Adata.ToArray<int>() ,len=Anames.ToArray().Length}, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Search(string Sname, string Sphone, string Semail)
+        {
+            var reporters = from m in db.Reporter
+                        select m;
+
+            if (!String.IsNullOrEmpty(Sname))
+            {
+                reporters = reporters.Where(s => s.name.Contains(Sname));
+            }
+
+            if (!string.IsNullOrEmpty(Sphone))
+            {
+                reporters = reporters.Where(x => x.phone.Contains(Sphone));
+            }
+            if (string.IsNullOrEmpty(Semail))
+            {
+                return View(reporters);
+            }
+            else
+            {
+                return View(reporters.Where(y => y.email.Contains(Semail)));
+            }
+        }
    }
 }

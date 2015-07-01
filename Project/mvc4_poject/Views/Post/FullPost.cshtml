@@ -11,29 +11,25 @@
         <section style="padding:12px">
             <article class=" blogpost">
                 <header>
-                    <h1 style="text-shadow: 2px 2px #7a7a7a; font-size: x-large; ">@item.post.title</h1>
+                    <b2>@item.post.title</b2>
                     <p>
-                        <h4 style="font-family: BarFont;">Posted on (@item.post.date) </h4>
-                        <h4 style="font-family: BarFont; ">
-                            Written by
-                            <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>@item.post.author</a>
-                        </h4>
-
-                        <h4 style="font-family: BarFont; ">Category: @item.post.category</h4>
-                        <h4 style="font-family: BarFont; ">Number of comments:@(item.numberOfCom)</h4>
+                        <h2 style="font-family: BarFont;">
+                            Posted on (@item.post.date)
+                            <br />Written by
+                            <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>@item.post.author</a><br />
+                                Category: @item.post.category <br />
+                                Number of comments: @(item.numberOfCom)
+                        </h2>
                     </p>
                 </header>
                 <p>
-                    <h5 style="font-size:medium">@item.post.intro</h5>
+                    <h5 style="font-size: medium; text-decoration: underline;">@item.post.intro</h5>
                 </p>
                 
                     <div>
-                        <p style="font-size:small">@item.post.body</p>
+                        <h2>@item.post.body</h2><br />
                         @if (@item.post.images != null)
                         {
-                            <!--
-                    <img src="@item.post.images" />
-                -->
                             char[] delimiterChars = { ',' };
                             string[] images = (item.post.images.Split(delimiterChars));
 
@@ -45,15 +41,11 @@
                             -->
                                         @{int counter = 0;}
                                         <li data-target="#myCarousel" data-slide-to=@counter class="active"></li>
-                                        @foreach (var helper in images)
+                                        @{counter = counter + 1;}
+                                        @for (var i = 1; i < images.Count(); i++, counter++)
                                         {
-                                            counter=counter+1;
-                                            if (helper != images.First())
-                                            {
-                                                <li data-target="#myCarousel" data-slide-to=@counter></li>
-                                            }
+                                            <li data-target="#myCarousel" data-slide-to=@counter></li>
                                         }
-
                                     </ol>
 
                                     <!-- Wrapper for slides -->
@@ -110,41 +102,32 @@
         </section>
     </div>
     
-    <article style="padding-left:0px" id="headline">
-        <h3>comments:</h3><br />
-    </article>
-    
     if (item.comments != null)
     {
+        <article id="headline">
+            <h2 style="text-decoration: underline;">comments:</h2><br />
+        </article>
         foreach (var comment in item.comments)
         {
-            <br />
-            <section id="comments">
                 <!--all the comments-->
-                <article style="padding-left:30px "><!--
-                                                        
-                                                    
-                    @{if(@comment.id.Equals(1)){
-                        <h3 style="padding-left:25px ;padding-top:10px">comments:</h3><br />
-                    }}-->
-                    <header>
-                        <h4>@comment.title</h4>   by:@comment.author
-                    </header>
-                    <p style="padding-left:10px ">@comment.body</p>
+                <article id="headline" style="padding-left:8px" >
+                        <h3 style="text-decoration: underline">@comment.title</h3>
+                        by: @comment.author<br />
+                        @comment.body
                 </article>
-
-            </section>
         }
     }    <br />
         <div>
             <article>
                 <form action="/Post/addComment">
-                    <h3>Add comment:</h3><br>
-                    author: <input type="text" name="author"><br>
-                    title: <input type="text" name="title"><br>
-                    body: <input type="text" name="body"><br>
+                    <h2>Add new comment:</h2>
+                    <h3>
+                        <input type="text" class="form-control" id="author" name="author" maxlength="20" placeholder="Author" style="width:300px;" />
+                        <input type="text" class="form-control" id="title" name="title" maxlength="15" placeholder="Title" style="width:300px;" />
+                        <input type="text" class="form-control" id="body" name="body" placeholder="Comment.." style="width:300px;" />
+                    </h3>
                     <input type="text" name="postId" value="@item.post.id" readonly hidden><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" class="btn btn-primary btn-default" role="button" value="Submit" /><br />
                 </form>
             </article>
         </div>
