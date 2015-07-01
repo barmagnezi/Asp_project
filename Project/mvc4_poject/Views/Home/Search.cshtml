@@ -20,7 +20,15 @@
                 <option>Technology</option>
             </select>
             -->
-            @Html.DropDownList("PostCat", "All")
+            <select id="PostCat" name="PostCat" class="form-control" style="float:left ;width:150px;">
+                <option value="">All</option>
+                <option>Economy</option>
+                <option>Other</option>
+                <option>Politics</option>
+                <option>Technology</option>
+                <option>Sports</option>
+                <option>Celebrity</option>
+            </select>
             Title: @Html.TextBox("SearchString")
             <input type="submit" style="margin-left:10px" class="btn btn-primary btn-default" role="button" value="Search" />
         </h3>
