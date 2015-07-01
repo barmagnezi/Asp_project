@@ -8,12 +8,14 @@
 @using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
         <h3>
-            <select id="PostCat" name="PostCat">
+            <select id="PostCat" name="PostCat" class="form-control" style="float:left ;width:150px;">
                 <option value="">All</option>
                 <option>Economy</option>
                 <option>Other</option>
                 <option>Politics</option>
                 <option>Technology</option>
+                <option>Sports</option>
+                <option>Celebrity</option>
             </select>
             Title: @Html.TextBox("SearchString")
             <input type="submit" style="margin-left:10px" class="btn btn-primary btn-default" role="button" value="Search" />
@@ -21,10 +23,10 @@
 }
 <h2>Top posts:</h2>
 @foreach (var item in Model) {
-    <div class="row" style="float: left; width: 50%">
+    <div class="row" style="float: left; width: 50%;">
   <div class="col-sm-6 col-md-4" style="width:100%">
       <div class="thumbnail">
-          <img src="@item.image" class="imageS" alt=""><s5>@item.title</s5>
+          <img src="@item.image" class="imageS" alt="" style="border-radius:15px"><s5>@item.title</s5>
           <div class="caption">
               <h3 id="intro-@item.id"></h3>
           </div>
