@@ -11,24 +11,24 @@
         <section style="padding:12px">
             <article class=" blogpost">
                 <header>
-                    <h1>@item.post.title</h1>
+                    <h1 style="text-shadow: 2px 2px #7a7a7a; font-size: x-large; ">@item.post.title</h1>
                     <p>
-                        <h4>Posted on (@item.post.date) </h4>
-                        <h4>
+                        <h4 style="font-family: BarFont;">Posted on (@item.post.date) </h4>
+                        <h4 style="font-family: BarFont; ">
                             Written by
                             <a href=@Url.Action("Details", "Reporters", new { id = item.post.IdAuthor })>@item.post.author</a>
                         </h4>
 
-                        <h4>Category: @item.post.category</h4>
-                        <h4>Number of comments:@(item.numberOfCom)</h4>
+                        <h4 style="font-family: BarFont; ">Category: @item.post.category</h4>
+                        <h4 style="font-family: BarFont; ">Number of comments:@(item.numberOfCom)</h4>
                     </p>
                 </header>
                 <p>
-                    <h5>@item.post.intro</h5>
+                    <h5 style="font-size:medium">@item.post.intro</h5>
                 </p>
                 
                     <div>
-                        <p>@item.post.body</p>
+                        <p style="font-size:small">@item.post.body</p>
                         @if (@item.post.images != null)
                         {
                             <!--

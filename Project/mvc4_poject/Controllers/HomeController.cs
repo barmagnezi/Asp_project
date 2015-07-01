@@ -27,7 +27,7 @@ namespace mvc4_poject.Controllers
                 }
                 else
                 {
-                    newitem.image="Images/defualt/news.jpg";
+                    newitem.image="/Images/defualt/news.jpg";
                 }
                 newitem.id = item.id;
                 newitem.title = item.title;

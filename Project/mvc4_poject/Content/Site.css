@@ -1,4 +1,12 @@
-﻿html {
+﻿@font-face {
+    font-family: BarFont;
+    font-weight: bold;
+    font-style:italic;
+    font-size:x-large;
+}
+/*defualt!!!
+    */
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
