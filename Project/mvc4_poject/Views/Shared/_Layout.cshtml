@@ -48,14 +48,15 @@
                 
             </ul>
         </nav>
+        <div style="left:0; height: 170px; width: 100%; ">
+            <img src="/Images/defualt/title.png" style="height: 100%;width:100%;margin-top:45px;margin-left:auto;margin-right:auto" />
+        </div>
     </div>
 
     <div id="body">
-        <div>
-            <img src="/Images/defualt/title.png" style="height: 170px;margin-top:45px;margin-left:auto;margin-right:auto" />
-        </div>
+        
         @RenderSection("featured", required: false)
-        <div style="padding-left: 25px ;padding-top:40px">
+        <div style="padding-left: 25px ">
             @RenderBody()
         </div>
     </div>

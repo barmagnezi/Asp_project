@@ -43,10 +43,10 @@
 @foreach (var item in Model)
 {
     <div class="row" style="float: left; width: 50%;height:550px" data-categry="@item.category">
-        <div class="col-sm-6 col-md-4" style="width:100%">
-            <div class="thumbnail">
-                <img src="@item.image" class="imageS" alt=""><s5>@item.title</s5>
-                <div class="caption">
+        <div class="col-sm-6 col-md-4" style="width: 100%; max-height: 550px">
+            <div class="thumbnail" style="max-height:550px">
+                <img src="@item.image" class="imageS" alt="" style="max-height:400px"><s5>@item.title</s5>
+                <div class="caption" style="max-height:150px">
                     <h2 id="intro-@item.id"></h2>
                 </div>
                 <p><span class="intro" data-idpost="@item.id"><a class="btn btn-default" role="button" id="introButton">Intro</a></span> <a href="/Post/FullPost/@item.id" class="btn btn-primary" role="button">Full Article</a></p>

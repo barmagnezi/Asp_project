@@ -25,10 +25,10 @@
 <h2 style="text-decoration: underline;">Top posts:</h2>
 @foreach (var item in Model) {
     <div class="row" style="float: left; width: 50%; height: 520px">
-  <div class="col-sm-6 col-md-4" style="width:100%">
-      <div class="thumbnail">
-          <img src="@item.image" class="imageS" alt="" style="border-radius:15px"><s5>@item.title</s5>
-          <div class="caption">
+  <div class="col-sm-6 col-md-4" style="width: 100%;height: 520px">
+      <div class="thumbnail" style="height: 520px">
+          <img src="@item.image" class="imageS" alt="" style="border-radius:15px;max-height:400px"><s5>@item.title</s5>
+          <div class="caption" style="max-height:100px">
               <h2 id="intro-@item.id"></h2>
           </div>
           <p><span class="intro" data-idpost="@item.id"><a class="btn btn-default" role="button" id="introButton">Intro</a></span> <a href="/Post/FullPost/@item.id" class="btn btn-primary" role="button">Full Article</a></p>
